@@ -52,7 +52,7 @@ class TodoController extends Controller
     public function show()
     {
          $data = Todo::with('priority')->get();
-         return view('todo', ["data" => $data]);
+         return view('todo', compact('data'));
     }
 
     /**

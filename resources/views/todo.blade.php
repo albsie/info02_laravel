@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        ul{
+        ul {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             list-style-type: none;
@@ -16,15 +16,13 @@
 </head>
 <body>
 
+
 <section>
     @foreach($data as $key => $value)
-
-        {{$value}}
-
         <ul>
             <li>{{$value['id']}}</li>
             <li>{{$value['name']}}</li>
-            <li>{{$value->priority}}</li>
+            <li>{{$value->priority()->first()->name}}</li>
             <li>{{$value['done']}}</li>
             <li>
                 <form action="/todos" method="post">
@@ -46,11 +44,11 @@
 <section>
     <form action="/todos" method="post">
         @csrf
-    <ul>
-        <li><input name="name" type="text"></li>
-        <li><input name="priority" type="text"></li>
-        <button type="submit">Speichern</button>
-    </ul>
+        <ul>
+            <li><input name="name" type="text"></li>
+            <li><input name="priority" type="text"></li>
+            <button type="submit">Speichern</button>
+        </ul>
     </form>
 </section>
 </body>
