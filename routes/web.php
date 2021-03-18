@@ -27,4 +27,6 @@ Route::get('/user', [UserController::class, 'blabla']);
 // TodoRoute
 Route::get('/todos', [TodoController::class, 'show']);
 Route::post('/todos', [TodoController::class, 'store']);
+Route::put('/todos', [TodoController::class, 'update']);
+Route::delete('/todos', [TodoController::class, 'destroy']);
 

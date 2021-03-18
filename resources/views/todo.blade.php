@@ -8,20 +8,38 @@
     <style>
         ul{
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             list-style-type: none;
         }
     </style>
     <title>Todos</title>
 </head>
 <body>
+
 <section>
     @foreach($data as $key => $value)
+
+        {{$value}}
+
         <ul>
             <li>{{$value['id']}}</li>
             <li>{{$value['name']}}</li>
-            <li>{{$value['priority']}}</li>
+            <li>{{$value->priority}}</li>
             <li>{{$value['done']}}</li>
+            <li>
+                <form action="/todos" method="post">
+                    @method("PUT")
+                    @csrf
+                    <button type="submit" name="done" value="{{$value['id']}}">Done</button>
+                </form>
+            </li>
+            <li>
+                <form action="/todos" method="post">
+                    @method("DELETE")
+                    @csrf
+                    <button type="submit" name="toDelete" value="{{$value['id']}}">Delete</button>
+                </form>
+            </li>
         </ul>
     @endforeach
 </section>

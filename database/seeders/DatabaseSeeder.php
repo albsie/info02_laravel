@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
     {
          User::factory(20)->create();
          Todo::factory(10)->create();
+         $this->call(PrioritySeeder::class);
     }
 }

@@ -51,7 +51,7 @@ class TodoController extends Controller
      */
     public function show()
     {
-         $data = Todo::get();
+         $data = Todo::with('priority')->get();
          return view('todo', ["data" => $data]);
     }
 
@@ -75,7 +75,8 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $todo->setDone($request->all()['done']);
+        return $this->show();
     }
 
     /**
@@ -84,8 +85,10 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todo $todo)
+    public function destroy(Todo $todo, Request $request)
     {
-        //
+        $todo_id = $request->all()['toDelete'];
+        $todo->deleteTodo($todo_id);
+        return $this->show();
     }
 }
